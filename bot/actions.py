@@ -61,7 +61,7 @@ async def handle_message(message: types.Message) -> None:
         try:
             await message.bot.send_message(message.from_user.id, unknown_files, disable_web_page_preview=True)
         except Exception:
-            await message.bot.send_message(message.from_user.id, 'Обработка завершена неуспешно. Похоже, проблемы с кодировкой в имени файлов. Можно попробовать написать @arseny_volodko')
+            await message.bot.send_message(message.from_user.id, 'Не удалось вывести названия файлов, которые не удалось обработать. Похоже, проблемы с кодировкой в имени файлов. Можно попробовать написать @arseny_volodko')
 
     info_msg = None
 
