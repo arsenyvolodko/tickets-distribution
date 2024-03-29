@@ -64,11 +64,11 @@ async def handle_message(message: types.Message) -> None:
     info_msg = None
 
     for user_name, tickets in ru_map.items():
-        name = user_name.strip().capitalize()
+        name = ' '.join(map(lambda x: x.capitalize(), user_name.split()))
         try:
             await create_folder_path(f'tickets/tickets-{cur_time}/{name}')
         except Exception:
-            await message.bot.send_message(message.from_user.id, f"Не вышло создать папку для {name}.")
+            await message.bot.send_message(message.from_user.id, f"Не удалось создать папку для {name}.")
             continue
         for ticket in tickets:
             cnt += 1
