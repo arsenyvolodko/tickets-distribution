@@ -58,8 +58,10 @@ async def handle_message(message: types.Message) -> None:
                                        f'Не удалось определить принадлежность {len(unknown)} файлов:')
 
         unknown_files = '\n'.join(map(lambda x: url + '/' + x, unknown))
-
-        await message.bot.send_message(message.from_user.id, unknown_files, disable_web_page_preview=True)
+        try:
+            await message.bot.send_message(message.from_user.id, unknown_files, disable_web_page_preview=True)
+        except Exception:
+            await message.bot.send_message(message.from_user.id, 'Обработка завершена неуспешно. Похоже, проблемы с кодировкой в имени файлов. Можно попробовать написать @arseny_volodko')
 
     info_msg = None
 
